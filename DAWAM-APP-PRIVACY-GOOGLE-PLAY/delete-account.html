@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حذف الحساب — تـم</title>
+<meta name="description" content="طلب حذف الحساب والبيانات من تطبيق تـم لإدارة الحضور والانصراف.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗑️</text></svg>">
+<style>
+  :root {
+    color-scheme: light dark;
+
+    --wheat: #b9a779;
+    --wheat-deep: #71603c;
+
+    --ground: #edebe0;
+    --surface: #fbfaf6;
+    --ink: #161616;
+    --ink-muted: #4a4744;
+    --rule: #d8d3c2;
+    --accent: #054239;
+    --accent-soft: #05423912;
+    --warn: #7a2230;
+    --warn-soft: #7a223010;
+    --field: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101828;
+      --surface: #1a2334;
+      --ink: #f2f4f7;
+      --ink-muted: #a3adbd;
+      --rule: #2f3b4f;
+      --accent: #8fbfb2;
+      --accent-soft: #8fbfb214;
+      --warn: #e8a0a8;
+      --warn-soft: #e8a0a810;
+      --wheat: #cbbc93;
+      --wheat-deep: #cbbc93;
+      --field: #0c121d;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #101828;
+    --surface: #1a2334;
+    --ink: #f2f4f7;
+    --ink-muted: #a3adbd;
+    --rule: #2f3b4f;
+    --accent: #8fbfb2;
+    --accent-soft: #8fbfb214;
+    --warn: #e8a0a8;
+    --warn-soft: #e8a0a810;
+    --wheat: #cbbc93;
+    --wheat-deep: #cbbc93;
+    --field: #0c121d;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", "Noto Sans Arabic", "Geeza Pro", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .sheet { max-width: 40rem; margin: 0 auto; }
+
+  header {
+    padding: 72px 0 32px;
+    border-bottom: 2px solid var(--wheat);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wheat-deep);
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", serif;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .lede { font-size: 1.05rem; color: var(--ink-muted); margin: 0; }
+
+  section { padding: 38px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: 0; }
+
+  h2 {
+    font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+
+  p { margin: 14px 0; }
+
+  ul {
+    margin: 14px 0;
+    padding-inline-start: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  li::marker { color: var(--wheat); }
+  strong { font-weight: 700; }
+
+  /* ── الخطوات ───────────────────────────── */
+  ol.steps {
+    list-style: none;
+    counter-reset: s;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  ol.steps li {
+    counter-increment: s;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  ol.steps li::before {
+    content: counter(s);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ── لوحة ما يُحذف / ما يبقى ──────────── */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-inline-start: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin: 20px 0;
+  }
+
+  .panel.keep { border-inline-start-color: var(--warn); background: var(--warn-soft); }
+  .panel h3 { margin: 0 0 6px; font-size: 0.95rem; font-weight: 700; }
+
+  /* ── النموذج ───────────────────────────── */
+  form { margin-top: 22px; display: flex; flex-direction: column; gap: 20px; }
+
+  .field { display: flex; flex-direction: column; gap: 7px; }
+
+  label { font-size: 0.9rem; font-weight: 700; }
+
+  .hint { font-size: 0.8rem; color: var(--ink-muted); font-weight: 400; }
+
+  input, textarea {
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--field);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 13px 15px;
+    width: 100%;
+  }
+
+  input {
+    direction: ltr;
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  textarea { resize: vertical; min-height: 5.5rem; line-height: 1.7; }
+
+  input:focus-visible, textarea:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  input[aria-invalid="true"] { border-color: var(--warn); }
+
+  .error {
+    font-size: 0.83rem;
+    color: var(--warn);
+    font-weight: 600;
+    min-height: 1.2em;
+  }
+
+  button {
+    font: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ground);
+    background: var(--accent);
+    border: 0;
+    border-radius: 5px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+
+  button:hover { opacity: 0.9; }
+
+  .result {
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-inline-start: 3px solid var(--accent);
+    border-radius: 5px;
+    padding: 24px 24px 20px;
+    display: none;
+  }
+
+  .result.on { display: block; }
+  .result:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .result-head {
+    margin: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wheat-deep);
+    font-weight: 600;
+  }
+
+  .result-number {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin: 6px 0 12px;
+  }
+
+  .result-body { margin: 0; font-size: 0.98rem; }
+  .result-body strong { color: var(--accent); }
+
+  .result-note {
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    word-break: break-word;
+  }
+
+  a { color: var(--accent); text-underline-offset: 3px; }
+
+  footer {
+    padding: 40px 0 0;
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    border-top: 2px solid var(--wheat);
+    margin-top: 24px;
+  }
+
+  .fill {
+    background: var(--accent-soft);
+    border-radius: 3px;
+    padding: 1px 7px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; padding-inline: 18px; }
+    header { padding-top: 48px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header>
+    <p class="eyebrow">تطبيق تـم</p>
+    <h1>حذف الحساب والبيانات</h1>
+    <p class="lede">
+      من هذه الصفحة تطلب حذف حسابك في تطبيق «تـم» والبيانات المرتبطة به.
+    </p>
+  </header>
+
+  <section>
+    <h2>قبل أن تُرسل</h2>
+
+    <div class="panel">
+      <h3>ما يُحذف</h3>
+      <ul>
+        <li>حسابك في التطبيق وإمكانية الدخول إليه</li>
+        <li>ارتباط رقم هاتفك بالحساب</li>
+        <li>معرّف جهازك ورمز الإشعارات المسجَّلان</li>
+        <li>رسائل الدعم التي أرسلتها عبر التطبيق</li>
+      </ul>
+    </div>
+
+    <div class="panel keep">
+      <h3>ما قد يبقى</h3>
+      <p>
+        <strong>سجلّات الحضور والانصراف جزءٌ من سجلّات العمل لدى جهة عملك،
+        لا من بياناتك الشخصيّة في التطبيق وحده.</strong> قد تكون جهتك ملزَمة
+        بحفظها للمدّة التي تحدّدها أنظمتها الإداريّة، حتّى بعد حذف حسابك.
+        لمعرفة مدّة الحفظ لديك، راجع الإدارة المختصّة في جهة عملك.
+      </p>
+    </div>
+
+    <p>
+      حذف الحساب يعني أنّك لن تستطيع تسجيل حضورك عبر التطبيق. إن كنت ما زلت
+      على رأس عملك، راجع جهتك قبل تقديم الطلب.
+    </p>
+  </section>
+
+  <section>
+    <h2>كيف تسير العمليّة</h2>
+    <ol class="steps">
+      <li>تُرسل الطلب من هذه الصفحة برقم الهاتف المسجَّل في حسابك.</li>
+      <li>نتحقّق من أنّ الطلب صادرٌ عن صاحب الرقم عبر رمز تأكيد يصلك عليه.</li>
+      <li>يُوقَف الحساب عن العمل فور التأكيد.</li>
+      <li>تُحذف البيانات نهائيّاً خلال <strong>٩٠ يوماً</strong> من التأكيد.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>تقديم الطلب</h2>
+    <p>
+      اكتب رقم الهاتف المسجَّل في حسابك. هو معرّف حسابك في التطبيق — الرقم
+      نفسه الذي تسجّل به دخولك.
+    </p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="phone">
+          رقم الهاتف
+          <span class="hint">مثال: 0912345678</span>
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="numeric"
+          autocomplete="tel"
+          maxlength="10"
+          placeholder="09XXXXXXXX"
+          aria-describedby="phone-error"
+          required>
+        <p class="error" id="phone-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="reason">
+          سبب الطلب
+          <span class="hint">اختياريّ</span>
+        </label>
+        <textarea id="reason" name="reason" placeholder="اكتب هنا إن أردت…"></textarea>
+      </div>
+
+      <button type="submit">إرسال طلب الحذف</button>
+    </form>
+
+    <div class="result" id="result" role="status" tabindex="-1">
+      <p class="result-head">سيصلك رمز تأكيد على الرقم</p>
+      <p class="result-number" id="result-number" dir="ltr"></p>
+      <p class="result-body">
+        بعد إدخال الرمز يُوقَف حسابك عن العمل فوراً، وتُحذف بياناتك نهائيّاً
+        خلال <strong>٩٠ يوماً</strong>.
+      </p>
+      <p class="result-note">
+        فُتح تطبيق البريد برسالةٍ جاهزة — اضغط «إرسال» فيه لإتمام الطلب.
+        إن لم يفتح، أرسل إلى
+        <a href="#" id="mailto-link"><a href="mailto:mr.ahmed.alhariri@gmail.com">mr.ahmed.alhariri@gmail.com</a></a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>التواصل</h2>
+    <p>
+      لأيّ استفسار عن الطلب أو عن بياناتك:
+      <br>
+      البريد: <a href="mailto:mr.ahmed.alhariri@gmail.com">mr.ahmed.alhariri@gmail.com</a>
+    </p>
+  </section>
+
+  <footer>تطبيق تـم — حذف الحساب</footer>
+
+</div>
+
+<script>
+  // بريد استقبال الطلبات — بدّله بعنوانك قبل النشر.
+  var SUPPORT_EMAIL = "mr.ahmed.alhariri@gmail.com";
+
+  var form = document.getElementById("form");
+  var phone = document.getElementById("phone");
+  var reason = document.getElementById("reason");
+  var errorBox = document.getElementById("phone-error");
+  var result = document.getElementById("result");
+  var mailLink = document.getElementById("mailto-link");
+
+  // توحيد الأرقام العربية-الهندية إلى غربية، كما يفعل التطبيق تماماً،
+  // كي لا يُرفض رقمٌ صحيح كُتب بلوحة مفاتيح عربية.
+  function toWestern(value) {
+    return value
+      .replace(/[٠-٩]/g, function (d) { return d.charCodeAt(0) - 0x0660; })
+      .replace(/[۰-۹]/g, function (d) { return d.charCodeAt(0) - 0x06f0; })
+      .replace(/[\s-]/g, "");
+  }
+
+  // نفس قاعدة التطبيق: عشر خانات تبدأ بـ09، والبادئات 090/091/092 غير مدعومة.
+  function validate(raw) {
+    var v = toWestern(raw);
+    if (!v) return "أدخل رقم هاتفك.";
+    if (!/^\d{10}$/.test(v)) return "الرقم يجب أن يكون عشر خانات.";
+    if (!/^09/.test(v)) return "الرقم يجب أن يبدأ بـ09.";
+    if (/^(090|091|092)/.test(v)) return "هذه البادئة غير مدعومة.";
+    return null;
+  }
+
+  phone.addEventListener("input", function () {
+    if (errorBox.textContent) {
+      errorBox.textContent = "";
+      phone.removeAttribute("aria-invalid");
+    }
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var problem = validate(phone.value);
+    if (problem) {
+      errorBox.textContent = problem;
+      phone.setAttribute("aria-invalid", "true");
+      phone.focus();
+      return;
+    }
+
+    errorBox.textContent = "";
+    phone.removeAttribute("aria-invalid");
+
+    var number = toWestern(phone.value);
+    var note = reason.value.trim();
+
+    var subject = "طلب حذف حساب — تطبيق تـم";
+    var body =
+      "السلام عليكم،\n\n" +
+      "أطلب حذف حسابي في تطبيق تـم والبيانات المرتبطة به.\n\n" +
+      "رقم الهاتف المسجَّل: " + number + "\n" +
+      (note ? "سبب الطلب: " + note + "\n" : "") +
+      "\nوأتفهّم أن سجلّات الحضور قد تبقى لدى جهة عملي وفق أنظمتها.\n\n" +
+      "وشكراً لكم.";
+
+    var href =
+      "mailto:" + SUPPORT_EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    document.getElementById("result-number").textContent = number;
+    mailLink.setAttribute("href", href);
+    result.classList.add("on");
+    result.focus();
+    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.location.href = href;
+  });
+</script>
+
+</body>
+</html>

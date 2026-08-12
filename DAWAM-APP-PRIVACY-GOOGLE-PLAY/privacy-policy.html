@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128274;</text></svg>">
+<title>سياسة الخصوصية — تـم</title>
+<meta name="description" content="سياسة الخصوصية لتطبيق تـم لإدارة الحضور والانصراف.">
+
+<style>
+  :root {
+    color-scheme: light dark;
+
+    /* مشتقّة من نظام ألوان التطبيق نفسه */
+    --forest: #054239;
+    --wheat: #b9a779;
+    --wheat-deep: #71603c;
+    --umber: #4a151e;
+
+    --ground: #edebe0;
+    --surface: #fbfaf6;
+    --ink: #161616;
+    --ink-muted: #4a4744;
+    --rule: #d8d3c2;
+    --accent: var(--forest);
+    --accent-soft: #05423912;
+    --yes: #054239;
+    --no: #7a2230;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101828;
+      --surface: #1a2334;
+      --ink: #f2f4f7;
+      --ink-muted: #a3adbd;
+      --rule: #2f3b4f;
+      --accent: #8fbfb2;
+      --accent-soft: #8fbfb214;
+      --yes: #8fbfb2;
+      --no: #e8a0a8;
+      --wheat: #cbbc93;
+      --wheat-deep: #cbbc93;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #101828;
+    --surface: #1a2334;
+    --ink: #f2f4f7;
+    --ink-muted: #a3adbd;
+    --rule: #2f3b4f;
+    --accent: #8fbfb2;
+    --accent-soft: #8fbfb214;
+    --yes: #8fbfb2;
+    --no: #e8a0a8;
+    --wheat: #cbbc93;
+    --wheat-deep: #cbbc93;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #edebe0;
+    --surface: #fbfaf6;
+    --ink: #161616;
+    --ink-muted: #4a4744;
+    --rule: #d8d3c2;
+    --accent: #054239;
+    --accent-soft: #05423912;
+    --yes: #054239;
+    --no: #7a2230;
+    --wheat: #b9a779;
+    --wheat-deep: #71603c;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", "Noto Sans Arabic", "Geeza Pro", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .sheet {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  /* ── الترويسة ───────────────────────────── */
+  header {
+    padding: 72px 0 32px;
+    border-bottom: 2px solid var(--wheat);
+    margin-bottom: 8px;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wheat-deep);
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", serif;
+    font-size: clamp(2.1rem, 6vw, 3rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    margin: 0;
+    max-width: 34rem;
+  }
+
+  .updated {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    padding: 14px 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── الأقسام ───────────────────────────── */
+  section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: 0; }
+
+  h2 {
+    font-family: "Noto Naskh Arabic", "Traditional Arabic", "Amiri", serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    text-wrap: balance;
+  }
+
+  h2 .num {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--wheat-deep);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+    flex: none;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 28px 0 8px;
+  }
+
+  p { margin: 14px 0; }
+
+  ul {
+    margin: 14px 0;
+    padding-inline-start: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  li::marker { color: var(--wheat); }
+
+  strong { color: var(--ink); font-weight: 700; }
+
+  a {
+    color: var(--accent);
+    text-underline-offset: 3px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── جداول البيانات ────────────────────── */
+  .scroll { overflow-x: auto; margin: 20px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+    min-width: 26rem;
+  }
+
+  caption {
+    text-align: start;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wheat-deep);
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
+
+  th, td {
+    text-align: start;
+    padding: 11px 14px 11px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  th {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  td:first-child { font-weight: 600; white-space: nowrap; }
+
+  /* ── لوحة "لا نجمع" ─────────────────────── */
+  .never {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-inline-start: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 24px 26px;
+    margin: 24px 0;
+  }
+
+  .never h3 { margin-top: 0; }
+
+  .never ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+
+  .never li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .never li::before {
+    content: "—";
+    color: var(--no);
+    font-weight: 700;
+    flex: none;
+  }
+
+  .fill {
+    background: var(--accent-soft);
+    border-radius: 3px;
+    padding: 1px 7px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  footer {
+    padding: 44px 0 0;
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    border-top: 2px solid var(--wheat);
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; padding-inline: 18px; }
+    header { padding-top: 48px; }
+  }
+</style>
+
+</head>
+<body>
+
+<div class="sheet">
+
+  <header>
+    <p class="eyebrow">تطبيق تـم</p>
+    <h1>سياسة الخصوصية</h1>
+    <p class="lede">
+      هذه السياسة تشرح ما يجمعه تطبيق «تـم» من بيانات، ولماذا، وأين يُخزَّن،
+      وما لا يجمعه إطلاقاً.
+    </p>
+    <p class="updated">آخر تحديث · 11 آب 2026</p>
+  </header>
+
+  <section>
+    <h2><span class="num">01</span> نطاق التطبيق</h2>
+    <p>
+      «تـم» تطبيق لتسجيل الحضور والانصراف، يستعمله موظّفو الجهة التي اعتمدته
+      لتوثيق دوامهم. الحساب فيه يُنشئه صاحب العمل ولا يُسجَّل ذاتيّاً، والبيانات
+      المعروضة فيه تعود إلى علاقة العمل بين الموظّف وجهته.
+    </p>
+    <p>
+      التطبيق غير موجَّه للأطفال، ولا يُستعمل خارج إطار العمل.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span> البيانات التي نجمعها</h2>
+
+    <div class="scroll">
+      <table>
+        <caption>ما يُجمع ولماذا</caption>
+        <thead>
+          <tr>
+            <th scope="col">البيان</th>
+            <th scope="col">الغرض منه</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>رقم الهاتف</td>
+            <td>تسجيل الدخول عبر رمز تحقّق يُرسَل إليه</td>
+          </tr>
+          <tr>
+            <td>بيانات وظيفيّة</td>
+            <td>
+              الاسم، رقم الهويّة، القسم، البريد، الحالة الوظيفيّة، تاريخ
+              المباشرة — تُعرَض للموظّف من سجلّ جهة عمله ولا يُنشئها التطبيق
+            </td>
+          </tr>
+          <tr>
+            <td>سجلّات الحضور</td>
+            <td>وقت الدخول والانصراف، وتاريخه، والبوّابة التي تمّ عندها</td>
+          </tr>
+          <tr>
+            <td>سبب الانصراف</td>
+            <td>
+              نصٌّ اختياريّ يكتبه الموظّف عند الخروج المبكّر، ويُرفَق بسجلّ
+              اليوم
+            </td>
+          </tr>
+          <tr>
+            <td>معرّف الجهاز</td>
+            <td>
+              ربط الحساب بجهازٍ واحد، فلا يسجّل أحدٌ حضور غيره
+            </td>
+          </tr>
+          <tr>
+            <td>رمز الإشعارات</td>
+            <td>إيصال التنبيهات إلى الجهاز الصحيح</td>
+          </tr>
+          <tr>
+            <td>رسائل الدعم</td>
+            <td>الردّ على ما يرسله الموظّف عبر صفحة التواصل</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="never">
+      <h3>ما لا نجمعه إطلاقاً</h3>
+      <ul>
+        <li><strong>الموقع الجغرافيّ</strong> — التطبيق لا يطلب إذن الموقع ولا يقرؤه</li>
+        <li><strong>جهات الاتّصال</strong> — لا وصول إلى دفتر الهاتف</li>
+        <li><strong>الصور والملفّات</strong> — لا وصول إلى معرض الصور أو التخزين</li>
+        <li><strong>صور الكاميرا</strong> — الكاميرا تقرأ رمز البوّابة فقط؛ لا تُلتقط صورة ولا تُحفَظ ولا تُرسَل</li>
+        <li><strong>أيّ بيانات لأغراض إعلانيّة</strong> — لا إعلانات ولا تتبّع تسويقيّ ولا بيع بيانات</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span> أذونات الجهاز</h2>
+    <p>يطلب التطبيق الحدّ الأدنى الذي تحتاجه وظيفته:</p>
+
+    <div class="scroll">
+      <table>
+        <caption>الأذونات واستعمالها</caption>
+        <thead>
+          <tr>
+            <th scope="col">الإذن</th>
+            <th scope="col">لماذا</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>الكاميرا</td>
+            <td>قراءة رمز الاستجابة السريعة على البوّابة، لا غير</td>
+          </tr>
+          <tr>
+            <td>الإشعارات</td>
+            <td>تنبيهات الحضور والمهامّ والتقارير</td>
+          </tr>
+          <tr>
+            <td>الاتصال بالشبكة</td>
+            <td>التواصل مع الخادم ومعرفة حالة الاتصال</td>
+          </tr>
+          <tr>
+            <td>الاهتزاز</td>
+            <td>تنبيه الإشعارات</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      رفض إذن الإشعارات لا يمنع استعمال التطبيق. أمّا رفض الكاميرا فيمنع مسح
+      الرمز وحده.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span> حفظ البيانات وحمايتها</h2>
+    <ul>
+      <li>تُنقل جميع الطلبات عبر <strong>اتصال مشفَّر (TLS)</strong>.</li>
+      <li>تُحفظ رموز الدخول في <strong>مخزن الجهاز المشفَّر</strong>، ولا تظهر داخل التطبيق.</li>
+      <li>
+        في وضع <strong>الحضور دون اتصال</strong> تُعمَّى بيانات المسح بمعيار
+        <strong>AES-256-GCM</strong> قبل أن تغادر الجهاز، فلا تُقرأ في الطريق ولا
+        تُقبل إن عُبث بها.
+      </li>
+      <li>
+        <strong>النسخ الاحتياطيّ الخارجيّ معطَّل</strong>: بيانات الحساب على
+        الجهاز لا تُنسَخ إلى أيّ خدمة سحابيّة، ولا تُسترجَع عند إعادة التثبيت.
+      </li>
+      <li>تُحذف بيانات الجهاز المحليّة بالكامل عند إزالة التطبيق.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span> خدمات خارجيّة</h2>
+    <p>
+      لا نشارك بياناتك مع مُعلنين ولا وسطاء بيانات. الخدمات الوحيدة التي يمرّ
+      بها شيء هي:
+    </p>
+    <ul>
+      <li>
+        <strong>خدمة الإشعارات السحابيّة من Google (Firebase Cloud Messaging)</strong>
+        — لإيصال التنبيهات إلى جهازك. تمرّ عبرها رسالة التنبيه ورمز الجهاز، لا
+        سجلّات حضورك.
+      </li>
+      <li>
+        <strong>تطبيق الخرائط على جهازك</strong> — يُفتح فقط حين تضغط «الاتجاهات
+        إلى المقرّ»، وبمبادرة منك. لا يقرأ التطبيق موقعك ولا يرسله؛ تطبيق
+        الخرائط وحده يتولّى ذلك وفق سياسته الخاصّة.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span> حقوقك</h2>
+    <ul>
+      <li><strong>الاطّلاع</strong> على سجلّ حضورك كاملاً داخل التطبيق في أيّ وقت.</li>
+      <li><strong>التصحيح</strong>: إن كان في سجلّك خطأ — كيومٍ لم يُسجَّل انصرافه — يمكنك طلب تصحيحه من الإدارة المختصّة لدى جهة عملك.</li>
+      <li><strong>إيقاف الإشعارات</strong> من إعدادات التطبيق متى شئت.</li>
+      <li>
+        <strong>الحذف</strong>: بيانات الحضور جزءٌ من سجلّ العمل لدى جهتك، فطلب
+        حذفها يُقدَّم إليها لا إلى التطبيق. أمّا بيانات جهازك المحليّة فتزول
+        بإزالة التطبيق.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span> تعديل هذه السياسة</h2>
+    <p>
+      عند أيّ تغيير جوهريّ في ما نجمعه أو كيف نستعمله، تُحدَّث هذه الصفحة
+      ويتغيّر تاريخ آخر تحديث أعلاها.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span> التواصل</h2>
+    <p>
+      لأيّ استفسار عن الخصوصيّة أو طلبٍ يتعلّق ببياناتك:
+      <br>
+      البريد: <a href="mailto:mr.ahmed.alhariri@gmail.com">mr.ahmed.alhariri@gmail.com</a>
+    </p>
+  </section>
+
+  <footer>
+    تطبيق تـم — سياسة الخصوصية
+  </footer>
+
+</div>
+
+</body>
+</html>
